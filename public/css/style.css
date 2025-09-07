@@ -23,21 +23,17 @@ h2 {
     font-size: x-large;
 }
 
-.container {
+#container {
     width: 100%;
     min-height: 100vh;
-    background-image: url('../images/purplewithmoon.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
     padding: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: stretch;
     box-sizing: border-box;
     flex-wrap: wrap;
+    transition: background 1s ease-in-out;
 }
 
 .left-div {
@@ -68,7 +64,8 @@ h2 {
 #weather-div {
     height: 70%;
     width: 70%;
-    min-width: 400px;
+    min-width: 500px;
+    min-height: 500px;
     margin: 20px auto;
     padding: 10px;
     border: 2px solid transparent;
@@ -124,6 +121,7 @@ h2 {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    min-width: 200px;
 }
 
 .humidity-div {
@@ -192,7 +190,7 @@ button:hover {
 }
 
 .glass-container {
-    background-color: rgba(255, 255, 255, 0.027);
+    background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
 }
 
@@ -203,4 +201,24 @@ button:hover {
 
 .city-btn {
     font-size: 24px;
+}
+
+.sunny {
+    background: linear-gradient(to bottom, #f6d365, #fda085);
+}
+
+.cloudy {
+    background: linear-gradient(to bottom, #bdc3c7, #2c3e50);
+}
+
+.rainy {
+    background: linear-gradient(to bottom, #2980b9, #2c3e50);
+}
+
+.snow {
+    background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+}
+
+.night {
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
 }

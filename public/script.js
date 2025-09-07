@@ -12,6 +12,7 @@ const humidity = document.getElementById("humidity");
 const windspeed = document.getElementById("windspeed");
 const sunrise = document.getElementById("sunrise");
 const sunset = document.getElementById("sunset");
+const container = document.getElementById("container");
 
 const template = document.getElementById("city-template");
 const templateContainer = document.getElementById("city-list");
@@ -19,13 +20,12 @@ const bookmarkBtn = document.querySelector(".bookmark-btn");
 
 let currentCity = '';
 let cities = getCities();
-console.log(cities);
 
 displayFirstCity();
 refreshList();
 
 async function getWeather(city) {
-    const response = await fetch(`/api/weather?city=${city}`);
+    const response = await fetch(`https://your-weather-api.onrender.com/weather?city=${city}`);
 
     if (response.status == 500) {
         document.querySelector("#weather-div").style.display = "none";
@@ -43,7 +43,7 @@ async function getWeather(city) {
 
         const coordinates = { lat: data.coord.lat, lon: data.coord.lon };
 
-        const timezoneResponse = await fetch(`/api/timezone?lat=${coordinates.lat}&lon=${coordinates.lon}`);
+        const timezoneResponse = await fetch(`https://your-weather-api.onrender.com/api/timezone?lat=${coordinates.lat}&lon=${coordinates.lon}`);
         const timezoneData = await timezoneResponse.json();
 
         if (timezoneData.status === "OK") {
@@ -90,7 +90,6 @@ bookmarkBtn.addEventListener("click", function (e) {
     }
     toggleBookmark(currentCity);
     refreshList();
-    console.log(cities);
 });
 
 function getTime(unixTime, timezone) {
@@ -119,54 +118,68 @@ function updateWeather(data, sunriseTime, sunsetTime, localTime) {
     sunrise.innerHTML = sunriseTime;
     sunset.innerHTML = sunsetTime;
 
-    // Change image
+    // Change image and background
     let weatherDescription = data.weather[0].main;
     if (data.dt < data.sys.sunrise || data.dt > data.sys.sunset) {
         // It's night
         if (weatherDescription == "Clear") {
             conditions.className = "wi wi-night-clear";
+            container.className = "night";
         }
         else if (weatherDescription == "Rain") {
             conditions.className = "wi wi-night-alt-rain";
+            container.className = "rainy";
         }
         else if (weatherDescription == "Snow") {
             conditions.className = "wi wi-night-alt-snow";
+            container.className = "snow";
         }
         else if (weatherDescription == "Drizzle") {
             conditions.className = "wi wi-night-alt-showers";
+            container.className = "rainy";
         }
         else if (weatherDescription == "Thunderstorm") {
             conditions.className = "wi wi-night-alt-thunderstorm";
+            container.className = "rainy";
         }
         else if (weatherDescription == "Clouds") {
             conditions.className = "wi wi-night-alt-cloudy";
+            container.className = "cloudy";
         }
         else {
             conditions.className = "wi wi-night-fog";
+            container.className = "cloudy";
         }
     }
     else {
         // It's day
         if (weatherDescription == "Clear") {
             conditions.className = "wi wi-day-sunny";
+            container.className = "sunny";
         }
         else if (weatherDescription == "Rain") {
             conditions.className = "wi wi-day-rain";
+            container.className = "rainy";
         }
         else if (weatherDescription == "Snow") {
             conditions.className = "wi wi-day-snow";
+            container.className = "snow";
         }
         else if (weatherDescription == "Drizzle") {
             conditions.className = "wi wi-day-showers";
+            container.className = "rainy";
         }
         else if (weatherDescription == "Thunderstorm") {
             conditions.className = "wi wi-day-thunderstorm";
+            container.className = "rainy";
         }
         else if (weatherDescription == "Clouds") {
             conditions.className = "wi wi-day-cloudy";
+            container.className = "cloudy";
         }
         else {
             conditions.className = "wi wi-day-light-wind";
+            container.className = "sunny";
         }
     }
 
