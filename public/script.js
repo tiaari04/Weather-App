@@ -13,12 +13,24 @@ const windspeed = document.getElementById("windspeed");
 const sunrise = document.getElementById("sunrise");
 const sunset = document.getElementById("sunset");
 
+const template = document.getElementById("city-template");
+const templateContainer = document.getElementById("city-list");
+const bookmarkBtn = document.querySelector(".bookmark-btn");
+
+let currentCity = '';
+let cities = getCities();
+console.log(cities);
+
+displayFirstCity();
+refreshList();
+
 async function getWeather(city) {
     const response = await fetch(`/api/weather?city=${city}`);
 
     if (response.status == 500) {
         document.querySelector("#weather-div").style.display = "none";
         document.querySelector("#error-div").style.display = "flex";
+        currentCity = '';
     }
 
     else {
@@ -47,6 +59,17 @@ async function getWeather(city) {
     searchBar.value = "";
 }
 
+function displayFirstCity() {
+    if (cities.length === 0) {
+        // defualt to showing the weather in edmonton
+        getWeather("Ottawa");
+    }
+    else {
+        getWeather(cities[0]);
+        bookmarkBtn.classList.add("bookmarked");
+    }
+}
+
 searchBtn.addEventListener("click", function (e) {
     const city = searchBar.value.trim();
     if (city == "") {
@@ -58,6 +81,18 @@ searchBtn.addEventListener("click", function (e) {
     }
 });
 
+bookmarkBtn.addEventListener("click", function (e) {
+    if (cities.indexOf(currentCity) === -1) {
+        addCity();
+    }
+    else {
+        deleteCity();
+    }
+    toggleBookmark(currentCity);
+    refreshList();
+    console.log(cities);
+});
+
 function getTime(unixTime, timezone) {
     return new Date(unixTime * 1000).toLocaleTimeString("en-US", {
         timeZone: timezone,
@@ -67,8 +102,9 @@ function getTime(unixTime, timezone) {
 }
 
 function updateWeather(data, sunriseTime, sunsetTime, localTime) {
-    // Change city name
+    // Change city name and log current city
     cityName.innerHTML = data.name;
+    currentCity = data.name;
 
     // Change description
     description.innerHTML = data.weather[0].description;
@@ -140,8 +176,65 @@ function updateWeather(data, sunriseTime, sunsetTime, localTime) {
     // Change windspeed
     windspeed.innerHTML = Math.round(data.wind.speed * 3.6) + " km/h";
 
+    // Decide for coloured or uncoloured bookmark
+    // If city in citylist then colored, else uncolored
+    toggleBookmark(currentCity);
 
     // Change display
     document.querySelector("#weather-div").style.display = "grid";
     document.querySelector("#error-div").style.display = "none";
+}
+
+function getCities() {
+    const value = localStorage.getItem('cities') || "[]";
+
+    return JSON.parse(value);
+}
+
+function setCities(cities) {
+    const citiesJson = JSON.stringify(cities);
+
+    localStorage.setItem("cities", citiesJson);
+}
+
+function addCity() {
+    cities.unshift(currentCity);
+    setCities(cities);
+}
+
+function deleteCity() {
+    const cityToRemove = cities.indexOf(currentCity);
+    cities.splice(cityToRemove, 1);
+    setCities(cities);
+}
+
+function refreshList() {
+    templateContainer.innerHTML = "";
+
+    for (const city of cities) {
+        const cityElement = template.content.cloneNode(true);
+        const cityName = cityElement.querySelector(".city-btn");
+
+
+        cityName.innerHTML = city;
+        templateContainer.append(cityElement);
+
+        cityName.addEventListener("click", () => {
+            getWeather(city);
+        });
+    }
+}
+
+function toggleBookmark(currentCity) {
+    const isBookmarked = bookmarkBtn.classList.contains("bookmarked");
+    if (cities.indexOf(currentCity) === -1) {
+        if (isBookmarked) {
+            bookmarkBtn.classList.remove("bookmarked");
+        }
+    }
+    else {
+        if (!isBookmarked) {
+            bookmarkBtn.classList.add("bookmarked");
+        }
+    }
 }

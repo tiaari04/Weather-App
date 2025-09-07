@@ -17,33 +17,33 @@
                 </div>
                 <div id="weather-div" class="glass-container">
                     <div class="main-info-div">
-                        <h1 id="city-name">Edmonton</h1>
+                        <h1 id="city-name"></h1>
                         <i id="conditions" class="wi wi-day-sunny"></i>
-                        <p id="description">clear sky</p>
-                        <h2 id="temp">20&deg;C</h2>
-                        <p id="feels-like">Feels like: 21&deg;C</p>
-                        <p id="low">Low: 14&deg;C</p>
-                        <p id="high">High: 25&deg;C</p>
+                        <p id="description"></p>
+                        <h2 id="temp"></h2>
+                        <p id="feels-like"></p>
+                        <p id="low"></p>
+                        <p id="high"></p>
                         <button class="bookmark-btn"><i class="fa fa-bookmark" aria-hidden="true" style="font-size: 20px;"></i></button>
                     </div>
                     <div class="side-info humidity-div">
                         <i class="wi wi-humidity"></i>
-                        <h2 id="humidity">30%</h2>
+                        <h2 id="humidity"></h2>
                         <p>Humidity</p>
                     </div>
                     <div class="side-info wind-div">
                         <i class="wi wi-strong-wind"></i>
-                        <h2 id="windspeed">12 km/h</h2>
+                        <h2 id="windspeed"></h2>
                         <p>Wind Speed</p>
                     </div>
                     <div class="side-info sunrise-div">
                         <i class="wi wi-sunrise"></i>
-                        <h2 id="sunrise">6:52</h2>
+                        <h2 id="sunrise"></h2>
                         <p>Sunrise</p>
                     </div>
                     <div class="side-info sunset-div">
                         <i class="wi wi-sunset"></i>
-                        <h2 id="sunset">9:52</h2>
+                        <h2 id="sunset"></h2>
                         <p>Sunset</p>
                     </div>
                 </div>
@@ -53,24 +53,14 @@
             </div>
             <div id="saved-cities-div">
                 <i class="fa fa-globe" aria-hidden="true" style="font-size: 70px;"></i>
-                <!-- <template> -->
-                    <div class="city-div glass-container">
-                        <button class="city-btn">Montreal</button>
-                        <button class="delete-btn"><i class="fa fa-trash-o" style="font-size: 20px;"></i></button>
-                    </div>
-                    <div class="city-div glass-container">
-                        <button class="city-btn">Edmonton</button>
-                        <button class="delete-btn"><i class="fa fa-trash-o" style="font-size: 20px;"></i></button>
-                    </div>
-                    <div class="city-div glass-container">
-                        <button class="city-btn">Toronto</button>
-                        <button class="delete-btn"><i class="fa fa-trash-o" style="font-size: 20px;"></i></button>
-                    </div>
-                    <div class="city-div glass-container">
-                        <button class="city-btn">Kingston</button>
-                        <button class="delete-btn"><i class="fa fa-trash-o" style="font-size: 20px;"></i></button>
-                    </div>
-                <!-- </template> -->
+                <div id="city-list">
+                    <template id="city-template">
+                        <div class="city-div glass-container">
+                            <button class="city-btn">Montreal</button>
+                            <!-- <button class="delete-btn"><i class="fa fa-trash-o" style="font-size: 20px;"></i></button> -->
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
         <script src="script.js"></script>
