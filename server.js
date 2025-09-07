@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 // Weather endpoint
-app.get("/api/weather", async (req, res) => {
+app.get("/weather", async (req, res) => {
     const { city } = req.query;
     const url = `https://api.openweathermap.org/data/2.5/weather?lang=en&units=metric&q=${city}&appid=${process.env.WEATHER_APIKEY}`;
 
@@ -36,7 +36,7 @@ app.get("/api/weather", async (req, res) => {
 });
 
 // Timezone endpoint
-app.get("/api/timezone", async (req, res) => {
+app.get("/timezone", async (req, res) => {
     const { lat, lon } = req.query;
     const url = `http://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.TIMEZONE_APIKEY}&format=json&by=position&lat=${lat}&lng=${lon}`;
 
