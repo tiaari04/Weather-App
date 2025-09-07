@@ -7,7 +7,10 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+console.log("Weather API Key:", process.env.WEATHER_APIKEY);
+console.log("Timezone API Key:", process.env.TIMEZONE_APIKEY);
 
 // Set up __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
