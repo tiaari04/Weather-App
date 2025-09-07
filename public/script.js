@@ -25,7 +25,7 @@ displayFirstCity();
 refreshList();
 
 async function getWeather(city) {
-    const response = await fetch(`https://your-weather-api.onrender.com/weather?city=${city}`);
+    const response = await fetch(`https://weather-app-413h.onrender.com/weather?city=${city}`);
 
     if (response.status == 500) {
         document.querySelector("#weather-div").style.display = "none";
@@ -43,7 +43,7 @@ async function getWeather(city) {
 
         const coordinates = { lat: data.coord.lat, lon: data.coord.lon };
 
-        const timezoneResponse = await fetch(`https://your-weather-api.onrender.com/api/timezone?lat=${coordinates.lat}&lon=${coordinates.lon}`);
+        const timezoneResponse = await fetch(`https://weather-app-413h.onrender.com/api/timezone?lat=${coordinates.lat}&lon=${coordinates.lon}`);
         const timezoneData = await timezoneResponse.json();
 
         if (timezoneData.status === "OK") {
