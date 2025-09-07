@@ -27,15 +27,15 @@ refreshList();
 async function getWeather(city) {
     const response = await fetch(`https://weather-app-413h.onrender.com/weather?city=${city}`);
 
-    if (response.status == 500) {
+    const data = await response.json();
+
+    if (response.status == 500 || data.cod === "404") {
         document.querySelector("#weather-div").style.display = "none";
         document.querySelector("#error-div").style.display = "flex";
         currentCity = '';
     }
 
     else {
-        const data = await response.json();
-        console.log(data)
         // Calculate local Unix time
         const localUnixTime = data.dt;
         const sunriseUnixTime = data.sys.sunrise;
