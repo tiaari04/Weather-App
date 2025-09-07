@@ -222,3 +222,49 @@ button:hover {
 .night {
     background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
 }
+
+
+@media (max-width: 600px) {
+    #container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    #weather-div {
+        width: 100%;
+        min-width: unset;
+        /* allow shrinking */
+        min-height: unset;
+        grid-template-columns: 1fr;
+        /* stack info */
+        grid-template-rows: auto;
+        grid-template-areas:
+            "main-info-div"
+            "humidity-div"
+            "wind-div"
+            "sunrise-div"
+            "sunset-div";
+    }
+
+    .searchbar-div {
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    .wi {
+        font-size: 50px;
+    }
+
+    .city-btn {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
