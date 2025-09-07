@@ -43,7 +43,7 @@ async function getWeather(city) {
 
         const coordinates = { lat: data.coord.lat, lon: data.coord.lon };
 
-        const timezoneResponse = await fetch(`https://weather-app-413h.onrender.com/api/timezone?lat=${coordinates.lat}&lon=${coordinates.lon}`);
+        const timezoneResponse = await fetch(`https://weather-app-413h.onrender.com/timezone?lat=${coordinates.lat}&lon=${coordinates.lon}`);
         const timezoneData = await timezoneResponse.json();
 
         if (timezoneData.status === "OK") {
