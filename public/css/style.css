@@ -33,7 +33,7 @@ h2 {
     align-items: stretch;
     box-sizing: border-box;
     flex-wrap: wrap;
-    transition: background 1s ease-in-out;
+    transition: background 2s ease-in-out;
 }
 
 .left-div {
@@ -105,12 +105,9 @@ h2 {
     color: gold;
 }
 
-.delete-btn i:hover {
-    color: red;
-}
-
-#search-btn i:hover {
-    color: cadetblue;
+#search-btn i:hover,
+.city-btn:hover {
+    color: lightgray;
 }
 
 
@@ -203,24 +200,12 @@ button:hover {
     font-size: 24px;
 }
 
-.sunny {
-    background: linear-gradient(to bottom, #f6d365, #fda085);
-}
-
-.cloudy {
-    background: linear-gradient(to bottom, #bdc3c7, #2c3e50);
-}
-
-.rainy {
-    background: linear-gradient(to bottom, #2980b9, #2c3e50);
-}
-
-.snow {
-    background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+.day {
+    background: linear-gradient(to bottom right, #62cff4, #2c67f2);
 }
 
 .night {
-    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(to bottom right, #12063b, #09555c);
 }
 
 
@@ -234,10 +219,8 @@ button:hover {
     #weather-div {
         width: 100%;
         min-width: unset;
-        /* allow shrinking */
         min-height: unset;
         grid-template-columns: 1fr;
-        /* stack info */
         grid-template-rows: auto;
         grid-template-areas:
             "main-info-div"

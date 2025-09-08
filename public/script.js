@@ -122,64 +122,52 @@ function updateWeather(data, sunriseTime, sunsetTime, localTime) {
     let weatherDescription = data.weather[0].main;
     if (data.dt < data.sys.sunrise || data.dt > data.sys.sunset) {
         // It's night
+        container.className = "night";
         if (weatherDescription == "Clear") {
             conditions.className = "wi wi-night-clear";
-            container.className = "night";
         }
         else if (weatherDescription == "Rain") {
             conditions.className = "wi wi-night-alt-rain";
-            container.className = "rainy";
         }
         else if (weatherDescription == "Snow") {
             conditions.className = "wi wi-night-alt-snow";
-            container.className = "snow";
         }
         else if (weatherDescription == "Drizzle") {
             conditions.className = "wi wi-night-alt-showers";
-            container.className = "rainy";
         }
         else if (weatherDescription == "Thunderstorm") {
             conditions.className = "wi wi-night-alt-thunderstorm";
-            container.className = "rainy";
         }
         else if (weatherDescription == "Clouds") {
             conditions.className = "wi wi-night-alt-cloudy";
-            container.className = "cloudy";
         }
         else {
             conditions.className = "wi wi-night-fog";
-            container.className = "cloudy";
         }
     }
     else {
         // It's day
+        container.className = "day";
         if (weatherDescription == "Clear") {
             conditions.className = "wi wi-day-sunny";
-            container.className = "sunny";
         }
         else if (weatherDescription == "Rain") {
             conditions.className = "wi wi-day-rain";
-            container.className = "rainy";
         }
         else if (weatherDescription == "Snow") {
             conditions.className = "wi wi-day-snow";
-            container.className = "snow";
         }
         else if (weatherDescription == "Drizzle") {
             conditions.className = "wi wi-day-showers";
-            container.className = "rainy";
         }
         else if (weatherDescription == "Thunderstorm") {
             conditions.className = "wi wi-day-thunderstorm";
-            container.className = "rainy";
         }
         else if (weatherDescription == "Clouds") {
             conditions.className = "wi wi-day-cloudy";
-            container.className = "cloudy";
         }
         else {
             conditions.className = "wi wi-day-light-wind";
-            container.className = "sunny";
         }
     }
 
