@@ -39,8 +39,6 @@ Backend:
 
 * Express.js
 
-* PostgreSQL for database storage
-
 APIs:
 
 * OpenWeather API for weather data
